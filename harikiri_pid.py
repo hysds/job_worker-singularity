@@ -156,10 +156,8 @@ def graceful_shutdown(pid, logger=None):
     print ('killing pid: ', pid)
     try:
       os.kill(pid, signal.SIGTERM)
-      sys.exit(0)
     except ProcessLookupError:
       logging.info('Process %s already ended.'%str(pid))
-      sys.exit(0)
 
 
 def harikiri(root_work, inactivity_secs, check_interval, pid, logger=None):
@@ -186,6 +184,8 @@ def harikiri(root_work, inactivity_secs, check_interval, pid, logger=None):
             except Exception as e:
                 logging.error("Got exception in seppuku(): %s\n%s" %
                               (str(e), traceback.format_exc()))
+            break
+
         time.sleep(check_interval)
 
 
