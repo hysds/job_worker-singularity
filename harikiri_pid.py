@@ -156,10 +156,10 @@ def graceful_shutdown(pid, logger=None):
     print ('killing pid: ', pid)
     try:
       os.kill(pid, signal.SIGTERM)
-      ### sys.exit(0)
+      sys.exit(0)
     except ProcessLookupError:
       logging.info('Process %s already ended.'%str(pid))
-      ### sys.exit(0)
+      sys.exit(0)
 
 
 def harikiri(root_work, inactivity_secs, check_interval, pid, logger=None):
