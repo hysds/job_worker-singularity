@@ -72,6 +72,7 @@ def is_jobless(root_work, inactivity_secs, logger=None):
     # check if keep-alive
     logging.info("KEEP_ALIVE: %s" % KEEP_ALIVE)
     if keep_alive(root_work):
+        ### logging.info("keep_alive(root_work) is True")
         if KEEP_ALIVE != True:
             KEEP_ALIVE = True
             if logger is not None:
@@ -82,6 +83,7 @@ def is_jobless(root_work, inactivity_secs, logger=None):
         logging.info("Keep-alive exists.")
         return
     else:
+        ### logging.info("keep_alive(root_work) is False")
         if KEEP_ALIVE != False:
             KEEP_ALIVE = False
             if logger is not None:
@@ -129,34 +131,35 @@ def seppuku(pid, logger=None):
     logging.info("Initiating seppuku.")
 
     # gracefully shutdown
-    while True:
-        try:
-            graceful_shutdown(pid, logger)
-        except Exception as e:
-            logging.error("Got exception in graceful_shutdown(): %s\n%s" %
-                          (str(e), traceback.format_exc()))
-        time.sleep(randint(0, 600))
+    try:
+        graceful_shutdown(pid, logger)
+    except Exception as e:
+        logging.error("Got exception in graceful_shutdown(): %s\n%s" %
+                      (str(e), traceback.format_exc()))
 
 
 def graceful_shutdown(pid, logger=None):
-    """Gracefully shutdown supervisord, detach from AutoScale group or spot fleet,
+    """Gracefully shutdown by sigterm kill the celery process
        and shutdown."""
 
     # detach and die
     logging.info("Committing seppuku.")
 
-    time.sleep(60)
-
     # log seppuku
     if logger is not None:
         try:
-            print((log_event(logger, 'harikiri', 'shutdown', {}, [])))
+            logging.info(log_event(logger, 'harikiri', 'shutdown', {}, []))
         except:
             pass
 
-    ### call(["/usr/bin/sudo", "/sbin/shutdown", "-h", "now"])
     # kill celery process
-    os.kill(pid, signal.SIGTERM)
+    print ('killing pid: ', pid)
+    try:
+      os.kill(pid, signal.SIGTERM)
+      ### sys.exit(0)
+    except ProcessLookupError:
+      logging.info('Process %s already ended.'%str(pid))
+      ### sys.exit(0)
 
 
 def harikiri(root_work, inactivity_secs, check_interval, pid, logger=None):
@@ -165,14 +168,19 @@ def harikiri(root_work, inactivity_secs, check_interval, pid, logger=None):
        instance.
     """
 
+    """
     logging.info("harikiri configuration:")
     logging.info("root_work_dir=%s" % root_work)
     logging.info("inactivity=%d" % inactivity_secs)
     logging.info("check=%d" % check_interval)
     logging.info("logger=%s" % logger)
 
+    print ('pid: ', pid)
+    """
+
     while True:
         if is_jobless(root_work, inactivity_secs, logger):
+            logging.info("is_jobless() returns True.")
             try:
                 seppuku(pid, logger)
             except Exception as e:
