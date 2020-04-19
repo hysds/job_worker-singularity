@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
 from utils import (lustre_quota_info, find_cache_dir)
-import os, string
+import os, string, time
 import shutil
+
+# check every this many seconds
+check_interval = 600
 
 import logging
 logger = logging.getLogger(__name__)
-### logging.basicConfig(level=logging.INFO, format='%(asctime)s %(name)s.%(funcName)s +%(lineno)s: %(levelname)-8s [%(process)d] %(message)s')
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s.%(funcName)s +%(lineno)s: %(levelname)-8s [%(process)d] %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(name)s.%(funcName)s +%(lineno)s: %(levelname)-8s [%(process)d] %(message)s')
 
 def cleanup_old_jobs(work_path, userid, volume_root, threshold=10.):
     """If free disk space is below percent threshold, start cleaning out old jobs."""
@@ -32,7 +34,9 @@ def cleanup_old_jobs(work_path, userid, volume_root, threshold=10.):
             return percent_free
         if percent_free <= threshold:
             logger.info("Failed to free up disk space to %02.2f%%." % threshold)
-            print ("Failed to free up disk space to %02.2f%%." % threshold)
+    else:
+        logger.info("No need to free up disk space; not yet filled up to %02.2f%%." % threshold)
+
     return percent_free
 
 
@@ -55,6 +59,9 @@ def evict_localize_cache(work_path, userid, volume_root, threshold=10.):
             return percent_free
         if percent_free <= threshold:
             logger.info("Failed to free up disk space to %02.2f%%." % threshold)
+    else:
+        logger.info("No need to free up disk space; not yet filled up to %02.2f%%." % threshold)
+
     return percent_free
 
 
@@ -88,7 +95,7 @@ def main(argv):
           threshold = arg
 
   # check if work_path is valid
-  if not os.path.isdir(work_path) and not work_path.startswith('/nobackup'):
+  if not os.path.isdir(work_path) or not work_path.startswith('/nobackup'):
     logger.error('work_dir %s does not exist or is not /nobackup*.' % work_path)
     show_usage()
     sys.exit(2)
@@ -108,6 +115,8 @@ def main(argv):
 
     # cleanup localized datasets/PGEs if free disk space not met
     evict_localize_cache(work_path, userid, volume_root, float(threshold))
+
+    time.sleep(check_interval)
 
 
 if __name__ == '__main__':
