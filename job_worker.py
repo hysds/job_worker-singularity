@@ -33,7 +33,7 @@ from hysds.celery import app
 from hysds.log_utils import (logger, log_job_status, log_job_info, get_job_status,
                              log_task_worker, get_task_worker, get_worker_status, log_custom_event)
 
-from hysds.utils import (disk_space_info, get_threshold, get_disk_usage, get_func, lustre_quota_info,
+from hysds.utils import (disk_space_info, get_threshold, get_disk_usage, get_func,
                          get_short_error, query_dedup_job, makedirs, find_dataset_json, find_cache_dir)
 ### from hysds.container_utils import ensure_image_loaded, get_docker_params, get_docker_cmd
 from hysds.container_utils import ensure_image_loaded, get_docker_params, get_docker_cmd, get_singularity_cmd, get_singularity_params
@@ -740,15 +740,11 @@ def run_job(job, queue_when_finished=True):
     else:
         threshold = get_threshold(root_work_dir, disk_usage)
 
-    # check quota usage on lustre
-    """
-    quota_percentage_free = lustre_quota_info('lpan', '/nobackupp12')
-    if quota_percentage_free < threshold:
-      threshold = quota_percentage_free
-    """
-
     # check disk usage for root work dir;
     # cleanup old work and cached product directories
+    # *** note: cleanup on pleiades is done outside of verdi on the headnode
+    # ***       doing it by verdi on multiple pbs compute nodes can cause race condition
+    """
     logger.info("****** before calling cleanup(): ")
     logger.info('root_work_dir: %s' % root_work_dir)
     logger.info('jobs_dir_abs: %s' % jobs_dir_abs)
@@ -757,6 +753,7 @@ def run_job(job, queue_when_finished=True):
     logger.info('threshold: %s' % str(threshold))
     cleanup(root_work_dir, jobs_dir_abs, tasks_dir_abs,
             cache_dir_abs, threshold=threshold)
+    """
 
     # create work directory
     yr, mo, dy, hr, mi, se, wd, y, z = time.gmtime()
