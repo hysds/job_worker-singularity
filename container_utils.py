@@ -373,14 +373,17 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
             is_singularity = True
             if is_singularity:
                 logger.info("is_singularity: True, image_file: %s" % image_file)
-                # check if subdir cache_dir+image_file(-tar.gz) does not already exist
-                p = Popen(['tar', '--force-local', '-xvf', image_file], cwd=cache_dir, stderr=PIPE, stdout=PIPE)
-                stdout, stderr = p.communicate()
-                logger.info("stdout: %s" % stdout)
-                logger.info("stderr: %s" % stderr)
-                if p.returncode != 0:
-                    raise(RuntimeError("Failed to unzip image tar %s (%s): %s" % (image_file, image_name, stderr)))
-                logger.info("Unzipped image tar %s (%s)" % (image_file, image_name))
+                # if sandbox_dir does not already exist, untar the sandbox tarball
+                if !os.path.exists(sandbox_dir) or !os.path.isdir(sandbox_dir):
+                  p = Popen(['tar', '--force-local', '-xvf', image_file], cwd=cache_dir, stderr=PIPE, stdout=PIPE)
+                  stdout, stderr = p.communicate()
+                  logger.info("stdout: %s" % stdout)
+                  logger.info("stderr: %s" % stderr)
+                  if p.returncode != 0:
+                      raise(RuntimeError("Failed to unzip image tar %s (%s): %s" % (image_file, image_name, stderr)))
+                  logger.info("Unzipped image tar %s (%s)" % (image_file, image_name))
+                else:
+                  logger.info("sandbox tar ball already unzipped here %s " % sandbox_dir)
 
         else:
             # pull image from docker hub
