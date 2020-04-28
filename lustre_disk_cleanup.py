@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from utils import find_cache_dir
-from test import lustre_quota_info
+from utils import lustre_quota_info
 import os, string, time
 import shutil
 import sys, getopt
@@ -70,8 +70,6 @@ def evict_localize_cache(work_path, userid, volume_root, threshold=10.):
         logger.info("No need to free up disk space; not yet filled up to %02.2f%%." % threshold)
 
     return percent_free
-
-
 
 
 
