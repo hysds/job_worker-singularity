@@ -204,7 +204,7 @@ def get_docker_params(image_name, image_url, image_mappings, root_work_dir, job_
 
 
 ### XXXX
-def get_singularity_params(image_name, image_url, image_mappings, root_work_dir, job_dir):
+def get_singularity_params(image_name, image_url, image_mappings, root_work_dir, root_cache_dir, job_dir):
     """Build singularity params."""
 
     logger.info("XXXXXX in get_singularity_params() XXXXX")
@@ -218,7 +218,7 @@ def get_singularity_params(image_name, image_url, image_mappings, root_work_dir,
     logger.info("root_tasks_dir: %s"%root_tasks_dir)
     root_workers_dir = os.path.join(root_work_dir, 'workers')
     logger.info("root_workers_dir: %s"%root_workers_dir)
-    root_cache_dir = os.path.join(root_work_dir, 'cache')
+    root_cache_dir = os.path.join(root_cache_dir, 'cache')
     logger.info("root_cache_dir: %s"%root_cache_dir)
 
     image_file_basename = os.path.basename(image_url)
@@ -373,6 +373,7 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
             is_singularity = True
             if is_singularity:
                 logger.info("is_singularity: True, image_file: %s" % image_file)
+                # check if subdir cache_dir+image_file(-tar.gz) does not already exist
                 p = Popen(['tar', '--force-local', '-xvf', image_file], cwd=cache_dir, stderr=PIPE, stdout=PIPE)
                 stdout, stderr = p.communicate()
                 logger.info("stdout: %s" % stdout)
