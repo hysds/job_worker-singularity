@@ -33,7 +33,7 @@ from hysds.celery import app
 from hysds.log_utils import (logger, log_job_status, log_job_info, get_job_status,
                              log_task_worker, get_task_worker, get_worker_status, log_custom_event)
 
-from hysds.utils import (disk_space_info, get_threshold, get_disk_usage, get_func,
+from hysds.utils import (disk_space_info, get_threshold, get_disk_usage, get_func, lustre_quota_info,
                          get_short_error, query_dedup_job, makedirs, find_dataset_json, find_cache_dir)
 ### from hysds.container_utils import ensure_image_loaded, get_docker_params, get_docker_cmd
 from hysds.container_utils import ensure_image_loaded, get_docker_params, get_docker_cmd, get_singularity_cmd, get_singularity_params
@@ -183,11 +183,21 @@ def cleanup(work_path, jobs_path, tasks_path, cache_path, threshold=10.):
        and task directories and cached products."""
 
     # log initial disk stats
-    capacity, free, used, percent_free = disk_space_info(work_path)
+    ### capacity, free, used, percent_free = disk_space_info(work_path)
+
+    # the work_path looks like '{volume_root}/{userid}/...', e.g., '/nobackupp12/lpan/worker/workdir/'
+    volume_root = '/' + work_path.split('/')[1]
+    userid = work_path.split('/')[2]
+
+    percent_free = lustre_quota_info(userid, volume_root)
+    logger.debug('percent_free: %s' % str(percent_free))
+
+    """
     logger.info("Free disk space for %s: %02.2f%% (%dGB free/%dGB total)" %
                 (work_path, percent_free, free/1024**3, capacity/1024**3))
     logger.info(
         "Configured free disk space threshold for this job type is %02.2f%%." % threshold)
+    """
 
     # cleanup needed?
     if percent_free > threshold:
@@ -212,9 +222,13 @@ def cleanup(work_path, jobs_path, tasks_path, cache_path, threshold=10.):
         evict_localize_cache(work_path, cache_path, percent_free, threshold)
 
     # log final disk stats
-    capacity, free, used, percent_free = disk_space_info(work_path)
+    ### capacity, free, used, percent_free = disk_space_info(work_path)
+    percent_free = lustre_quota_info(userid, volume_root)
+
+    """
     logger.info("Final free disk space for %s: %02.2f%% (%dGB free/%dGB total)" %
                 (work_path, percent_free, free/1024**3, capacity/1024**3))
+    """
 
 
 def cleanup_old_tasks(work_path, tasks_path, percent_free, threshold=10.):
@@ -614,6 +628,9 @@ def run_job(job, queue_when_finished=True):
         }
         if 'HYSDS_ROOT_WORK_DIR' in os.environ:
             worker_cfg['root_work_dir'] = os.environ['HYSDS_ROOT_WORK_DIR']
+        if 'HYSDS_ROOT_CACHE_DIR' in os.environ:
+            logger.info("set root_cache_dir from env vari")
+            worker_cfg['root_cache_dir'] = os.environ['HYSDS_ROOT_CACHE_DIR']
         if 'HYSDS_WEBDAV_PORT' in os.environ:
             worker_cfg['webdav_port'] = os.environ['HYSDS_WEBDAV_PORT']
         if 'HYSDS_WEBDAV_URL' in os.environ:
@@ -667,6 +684,7 @@ def run_job(job, queue_when_finished=True):
     else:
         job_queue = run_job.request.delivery_info['routing_key']
     root_work_dir = worker_cfg.get('root_work_dir', app.conf.ROOT_WORK_DIR)
+    root_cache_dir = worker_cfg.get('root_cache_dir')
     webdav_port = str(worker_cfg.get('webdav_port', app.conf.WEBDAV_PORT))
     webdav_url = worker_cfg.get('webdav_url', app.conf.get('WEBDAV_URL'))
 
@@ -705,7 +723,8 @@ def run_job(job, queue_when_finished=True):
 
     # get cache dir
     cache_dir = "cache"
-    cache_dir_abs = os.path.join(root_work_dir, cache_dir)
+    ### cache_dir_abs = os.path.join(root_work_dir, cache_dir)
+    cache_dir_abs = os.path.join(root_cache_dir, cache_dir)
     try:
         makedirs(cache_dir_abs)
         logger.info("****** made dir cache_dir_abs:%s" % cache_dir_abs)
@@ -742,9 +761,6 @@ def run_job(job, queue_when_finished=True):
 
     # check disk usage for root work dir;
     # cleanup old work and cached product directories
-    # *** note: cleanup on pleiades is done outside of verdi on the headnode
-    # ***       doing it by verdi on multiple pbs compute nodes can cause race condition
-    """
     logger.info("****** before calling cleanup(): ")
     logger.info('root_work_dir: %s' % root_work_dir)
     logger.info('jobs_dir_abs: %s' % jobs_dir_abs)
@@ -753,7 +769,6 @@ def run_job(job, queue_when_finished=True):
     logger.info('threshold: %s' % str(threshold))
     cleanup(root_work_dir, jobs_dir_abs, tasks_dir_abs,
             cache_dir_abs, threshold=threshold)
-    """
 
     # create work directory
     yr, mo, dy, hr, mi, se, wd, y, z = time.gmtime()
@@ -1023,7 +1038,7 @@ def run_job(job, queue_when_finished=True):
               # get singularity params
               singularity_params[image_name] = get_singularity_params(image_name, image_url,
                                                             image_mappings, root_work_dir,
-                                                            job_dir)
+                                                            root_cache_dir, job_dir)
             else:
               # get docker params
               docker_params[image_name] = get_docker_params(image_name, image_url,
