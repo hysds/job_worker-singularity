@@ -374,7 +374,8 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
             if is_singularity:
                 logger.info("is_singularity: True, image_file: %s" % image_file)
                 # if sandbox_dir does not already exist, untar the sandbox tarball
-                if !os.path.exists(sandbox_dir) or !os.path.isdir(sandbox_dir):
+                sandbox_dir = image_file.replace('.tar.gz', '')
+                if not os.path.exists(sandbox_dir) or not os.path.isdir(sandbox_dir):
                   p = Popen(['tar', '--force-local', '-xvf', image_file], cwd=cache_dir, stderr=PIPE, stdout=PIPE)
                   stdout, stderr = p.communicate()
                   logger.info("stdout: %s" % stdout)
