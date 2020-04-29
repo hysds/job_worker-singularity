@@ -13,8 +13,7 @@ def usage_and_exit():
     '''
     Prints usage and exit
     '''
-    print(
-        "Usage:\n\t{0} <job-spec> <container> <version> <storage>".format(sys.argv[0]), file=sys.stderr)
+    print("Usage:\n\t{0} <job-spec> <container> <version> <storage>".format(sys.argv[0]), file=sys.stderr)
     sys.exit(-1)
 
 
