@@ -1,0 +1,991 @@
+{
+  "datasets": [
+    {
+      "ipath": "ariamh::data/S1-GUNW-BLACKLIST",
+      "match_pattern": "/(?P<id>S1-GUNW-BLACKLIST-.*?)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "version": "v1.0"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-GREYLIST",
+      "match_pattern": "/(?P<id>S1-GUNW-GREYLIST-.*?)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "version": "v1.0"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-AOI_TRACK",
+      "match_pattern": "/(?P<id>S1-GUNW-AOI_TRACK.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-MERGED-AOI_TRACK",
+      "match_pattern": "/(?P<id>S1-GUNW-MERGED-AOI_TRACK.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary"
+    },
+    {
+      "ipath": "ariamh::data/AOI_Ops_Report",
+      "match_pattern": "/(?P<id>AOI_Ops_Report-.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "result",
+      "version": "2.0",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/products/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/AOI_Enumeration_Report",
+      "match_pattern": "/(?P<id>AOI_Enumeration_Report-.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "result",
+      "version": "2.0",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/products/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/acquisition-BOS_SARCAT",
+      "match_pattern": "/acquisition-(?P<spacecraft>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<timestamp>.+?)Z_(?P<track>\\d.*?)_(?P<mode>.*?)-bos_sarcat$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition",
+      "version": "2.0"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-BOS_SARCAT",
+      "match_pattern": "/acquisition-(?P<spacecraft>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<timestamp>.+?)Z_(?P<track>\\d.*?)_(?P<mode>.*?)-bos_sarcat-planned$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition",
+      "version": "2.0"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-BOS_SARCAT",
+      "match_pattern": "/acquisition-(?P<spacecraft>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<timestamp>.+?)Z_(?P<track>\\d.*?)_(?P<mode>.*?)-bos_sarcat-predicted$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition",
+      "version": "2.0"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-AOI_report",
+      "match_pattern": "/report-AOI_(\\w*)_(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(.+)_(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition_report",
+      "version": "0.1"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-daily_report",
+      "match_pattern": "/report-daily_(\\w*)_(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(.+)_(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition_report",
+      "version": "0.1"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-acq-list",
+      "match_pattern": "/(?P<id>S1-GUNW-acqlist-RM-M\\w+S\\w+-TN\\w+-\\d{8}T\\d{6}-\\d{8}T\\d{6}-poeorb-\\w{4})$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-acqlist-audit_trail",
+      "match_pattern": "/(?P<id>S1-GUNW-acqlist-audit_trail-RM-M\\w+S\\w+-TN\\w+-\\d{8}T\\d{6}-\\d{8}T\\d{6}-poeorb-\\w{4})$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary"
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-ifg-cfg",
+      "match_pattern": "/(?P<id>S1-GUNW-ifg-cfg-RM-M\\w+S\\w+-TN\\w+-\\d{8}T\\d{6}-\\d{8}T\\d{6}-poeorb-\\w{4})$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary"
+    },
+    {
+      "ipath": "hysds::data/usgs_neic_pdl_origin",
+      "match_pattern": "/(?P<id>usgs_neic_pdl_origin_.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l0",
+      "type": "event",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/event/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/products/event/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/event/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/event/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/event/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/event/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "hysds::data/earthquake",
+      "match_pattern": "/(?P<id>AOI_eq_usgs_neic_pdl_.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l0",
+      "type": "area_of_interest",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/area_of_interest/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/products/area_of_interest/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/area_of_interest/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/area_of_interest/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/area_of_interest/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/area_of_interest/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/URG-RESP-PKG",
+      "match_pattern": "/(?P<pre>AOI_.*?_urgent_response_pkg)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "version": "0.1",
+      "type": "urgent_response_pkg",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{pre}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{pre}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{pre}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{pre}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{pre}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{pre}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-COD",
+      "match_pattern": "/(?P<pre>S1-COD_M.*?_TN.*?_)(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/GPS",
+      "match_pattern": "/(?P<instrument>GPS)_(?P<stationid>.*?)_(?P<solutiontype>.*?)_(?P<orbittype>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.*?).(?P<filetype>.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "project": "aria",
+      "level": "l2",
+      "version": "0.1",
+      "type": "gps",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{stationid}/{year}/{month}/{day}/{instrument}_{stationid}_{solutiontype}_{orbittype}_{year}{month}{day}{timestamp}.{filetype}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-DO",
+      "match_pattern": "/(?P<spacecraft>S1)-DO_(?P<misc>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "offset",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-DO_{misc}_{year}{month}{day}{timestamp}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/product_aggregation",
+      "match_pattern": "/(?P<id>product_aggregation.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "result",
+      "publish": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/product_downloader",
+      "match_pattern": "/(?P<id>product_downloader.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "result",
+      "publish": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/network_pair",
+      "match_pattern": "/(?P<id>network_pair.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "result",
+      "publish": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/result/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/result/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/result/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/area_of_interest",
+      "match_pattern": "/(?P<id>AOI_.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l0",
+      "type": "area_of_interest",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/area_of_interest/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/area_of_interest/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/area_of_interest/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/area_of_interest/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/area_of_interest/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/area_of_interest/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/incoming",
+      "level": "l1",
+      "type": "incoming",
+      "match_pattern": "/incoming-(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2})-(?P<id>CSK.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "publish": {
+        "location": "davs://aria1-dav.jpl.nasa.gov/incoming/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "https://aria1-dav.jpl.nasa.gov/incoming/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "location": "davs://pucops:puc_0ps@aria-dav.jpl.nasa.gov/browse/incoming/{version}/{id}",
+        "urls": [
+          "https://aria-dav.jpl.nasa.gov/browse/incoming/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/incoming",
+      "level": "l1",
+      "type": "incoming",
+      "match_pattern": "/incoming-(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2})-(?P<id>.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/incoming/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/incoming/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/incoming/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/incoming/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/incoming/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/incoming/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "hysds::data/dumby-product",
+      "match_pattern": "/(?P<id>dumby-product-\\d+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l0",
+      "type": "dumby-data",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/dumby/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/dumby/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/dumby/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/dumby/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/dumby/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/dumby/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/acquisition-S1-IW_SLC",
+      "match_pattern": "/(?P<id>acquisition-Sentinel-1._(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2}).+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-S1-IW_SLC",
+      "match_pattern": "/acquisition-(?P<spacecraft>S1\\w)_IW_SLC__(?P<misc>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition"
+    },
+    {
+      "ipath": "ariamh::data/acquisition-S1-IW_SLC",
+      "match_pattern": "/acquisition-(?P<spacecraft>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<timestamp>.+?)Z_(?P<track>\\d.*?)_(?P<mode>.*?)-esa_scihub$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "acquisition",
+      "version": "2.0"
+    },
+    {
+      "ipath": "ariamh::data/S1-IW_SLC",
+      "match_pattern": "/(?P<spacecraft>S1\\w)_IW_SLC__(?P<misc>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.+)$",
+      "alt_match_pattern": null,
+      "extractor": "/home/ops/ariamh/frameMetadata/sentinel/split_swath_products.sh",
+      "level": "l1",
+      "type": "slc",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-IW_SLC_SWATH",
+      "match_pattern": "/(?P<spacecraft>s1\\w)-iw(?P<swath>\\d)-slc-(?P<misc>.*?)-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "slc",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+       "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}-iw{swath}-slc-{misc}-{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-AUX_POEORB",
+      "match_pattern": "/(?P<spacecraft>S1\\w)_OPER_AUX_POEORB_OPOD_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+         "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_POEORB_OPOD_{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-AUX_RESORB",
+      "match_pattern": "/(?P<spacecraft>S1\\w)_OPER_AUX_RESORB_OPOD_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_OPER_AUX_RESORB_OPOD_{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-AUX_CAL",
+      "match_pattern": "/(?P<spacecraft>S1\\w)_AUX_CAL_V(?P<vdate>.*?)_G(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_AUX_CAL_V{vdate}_G{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-AUX_CAL_ACTIVE",
+      "match_pattern": "/S1_AUX_CAL_ACTIVE$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "ancillary",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/S1_AUX_CAL_ACTIVE",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/S1_AUX_CAL_ACTIVE",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/S1_AUX_CAL_ACTIVE"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/S1_AUX_CAL_ACTIVE",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/S1_AUX_CAL_ACTIVE",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/S1_AUX_CAL_ACTIVE"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/predictor_model",
+      "level": "l1",
+      "type": "predictor_model",
+      "match_pattern": "/(?P<id>predictor_model-.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/triaged_job",
+      "level": "NA",
+      "type": "triaged_job",
+      "match_pattern": "/(?P<id>triaged_job-.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/filtered-ifg-stack",
+      "match_pattern": "/(?P<id>filtered-ifg-stack_.+?-TN\\d+-.+-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T\\d{6}Z-\\w{5}-v.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l3",
+      "type": "ifg-stack",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/filtered-gunw-merged-stack",
+      "match_pattern": "/(?P<id>filtered-gunw-merged-stack_.+?-TN\\d+-.+-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T\\d{6}Z-\\w{5}-v.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l3",
+      "type": "gunw-merged-stack",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}"
+        ]
+      },
+      "browse": {
+       "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/displacement-time-series",
+      "match_pattern": "/(?P<id>displacement-time-series-.+_.+?-TN\\d+-.+-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T\\d{6}Z-\\w{5}-v.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l3",
+      "type": "time-series",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-IFG-STITCHED",
+      "match_pattern": "/(?P<pre>S1-IFG_STITCHED_TN.*?_.*?-)(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-MERGED",
+      "match_pattern": "/(?P<id>S1-GUNW-MERGED_.*?_TN.*?_.*?-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+))$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW-MERGED-STITCHED",
+      "match_pattern": "/(?P<id>S1-GUNW-MERGED-STITCHED_TN.*?_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2}).+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-IFG",
+      "match_pattern": "/(?P<pre>S1-IFG_.*?_TN.*?_.*?-)(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{pre}{year}{month}{day}{rest}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-IFG",
+      "match_pattern": "/(?P<id>S1-(?P<direction>A|D)-(?P<look>R)-(?P<track>\\d{3})-(?P<mode>tops)-(?P<master_acq_date>(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2}))_(?P<slave_acq_date>(?P<s_year>\\d{4})(?P<s_month>\\d{2})(?P<s_day>\\d{2}))-(?P<center_acq_time>(?P<hour>\\d{2})(?P<minute>\\d{2})(?P<sec>\\d{2}))-(?P<product_lat>(.*)(N|S)_(.*)(N|S))-(?P<orbit_type>(P|R)(P|R))-(?P<rest>.+))$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/S1-GUNW",
+      "match_pattern": "/(?P<id>S1-GUNW-(?P<direction>A|D)-(?P<look>R)-(?P<track>\\d{3})-(?P<mode>tops)-(?P<master_acq_date>(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2}))_(?P<slave_acq_date>(?P<s_year>\\d{4})(?P<s_month>\\d{2})(?P<s_day>\\d{2}))-(?P<center_acq_time>(?P<hour>\\d{2})(?P<minute>\\d{2})(?P<sec>\\d{2}))-(?P<product_lat>(.*)(N|S)_(.*)(N|S))-(?P<orbit_type>(P|R)(P|R))-(?P<rest>.+))$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l2",
+      "type": "interferogram",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/STACK",
+      "match_pattern": "/(?P<id>coregistered_slcs-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<time>\\d{6}).+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "NA",
+      "type": "stack",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/s1-timeseries-ps-stamps",
+      "match_pattern": "/(?P<id>s1-timeseries-ps-stamps-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<time>\\d{6}).+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "NA",
+      "type": "time_series",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/landslides-s1-timeseries-ps-stamps",
+      "match_pattern": "/(?P<id>landslides-s1-timeseries-ps-stamps-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<time>\\d{6}).+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "NA",
+      "type": "landslides",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{id}"
+        ]
+      }
+    },
+    {
+      "ipath": "ariamh::data/Orphaned_Datasets_Report",
+      "match_pattern": "/(?P<id>orphaned_datasets_report-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<time>\\d{6})-.+)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l1",
+      "type": "result",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/products/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/products/report/{version}/{id}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}",
+        "urls": [
+          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/report/{version}/{id}",
+          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/report/{version}/{id}"
+        ]
+      }
+    }
+  ]
+}
