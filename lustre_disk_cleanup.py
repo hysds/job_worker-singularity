@@ -165,14 +165,14 @@ def main(argv):
   logger.debug('threshold: %s' % threshold)
 
   while True:
-    # cleanup old files that are days old
-    cleanup(days, work_path)
-
     # cleanup done jobs if free disk space not met
     cleanup_old_jobs(work_path, userid, volume_root, float(threshold))
 
     # cleanup localized datasets/PGEs if free disk space not met
     evict_localize_cache(work_path, userid, volume_root, float(threshold)+threshold_dt)
+
+    # cleanup old files that are days old
+    cleanup(days, work_path)
 
     time.sleep(check_interval)
 
