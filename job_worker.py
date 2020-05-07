@@ -188,9 +188,10 @@ def cleanup(work_path, jobs_path, tasks_path, cache_path, threshold=10.):
     # the work_path looks like '{volume_root}/{userid}/...', e.g., '/nobackupp12/lpan/worker/workdir/'
     volume_root = '/' + work_path.split('/')[1]
     userid = work_path.split('/')[2]
+    logger.info('userid: %s' % userid)
 
     percent_free = lustre_quota_info(userid, volume_root)
-    logger.debug('percent_free: %s' % str(percent_free))
+    logger.info('percent_free: %s' % str(percent_free))
 
     """
     logger.info("Free disk space for %s: %02.2f%% (%dGB free/%dGB total)" %
@@ -236,7 +237,7 @@ def cleanup_old_tasks(work_path, tasks_path, percent_free, threshold=10.):
 
     if percent_free <= threshold:
         logger.info(
-            "Searching for old task dirs to clean out to %02.2f%% free disk space." % threshold)
+            "Searching for old task dirs to clean out to %02.2f%% free disk space under %s." % (threshold, tasks_path))
         for root, dirs, files in os.walk(tasks_path, followlinks=True):
             dirs.sort()
             if '.done' not in files:
@@ -260,7 +261,7 @@ def cleanup_old_jobs(work_path, jobs_path, percent_free, threshold=10., zero_sta
 
     if percent_free <= threshold:
         logger.info(
-            "Searching for old job dirs to clean out to %02.2f%% free disk space." % threshold)
+            "Searching for old job dirs to clean out to %02.2f%% free disk space under %s." % (threshold, jobs_path))
         for root, dirs, files in os.walk(jobs_path, followlinks=True):
             dirs.sort()
             if '.done' not in files or '_context.json' not in files or '_job.json' not in files:
@@ -298,7 +299,7 @@ def evict_localize_cache(work_path, cache_path, percent_free, threshold=10.):
 
     if percent_free <= threshold:
         logger.info(
-            "Evicting cached dirs to clean out to %02.2f%% free disk space." % threshold)
+            "Evicting cached dirs to clean out to %02.2f%% free disk space under %s." % (threshold, cache_path))
         for timestamp, signal_file, cache_dir in find_cache_dir(cache_path):
             logger.info("Cleaning out cache dir %s" % cache_dir)
             shutil.rmtree(cache_dir, ignore_errors=True)
