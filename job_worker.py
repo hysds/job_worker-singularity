@@ -753,7 +753,8 @@ def run_job(job, queue_when_finished=True):
     tasks_dir_abs = os.path.join(root_work_dir, tasks_dir)
 
     # get disk usage requirement and compute threshold
-    disk_usage = work_cfgs[job['type']].get('disk_usage', du_payload)
+    ### disk_usage = work_cfgs[job['type']].get('disk_usage', du_payload)
+    disk_usage = None
     if disk_usage is None:
         threshold = 10.
     else:
