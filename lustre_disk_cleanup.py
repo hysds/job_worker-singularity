@@ -92,7 +92,7 @@ def remove(path):
 
 
 
-def cleanup(number_of_days, path):
+def cleanup_files(number_of_days, path, threshold, userid, volume_root):
     """
     Removes files from the passed in path that are older than or equal 
     to the number_of_days
@@ -117,6 +117,10 @@ def cleanup(number_of_days, path):
             remove(root)
             logger.info('removed dir: %s' % root)
 
+        percent_free = lustre_quota_info(userid, volume_root)
+        if percent_free > threshold:
+          logger.info("No need to free up more disk space; %02.2f%% free." % percent_free)
+          break
 
 
 def show_usage():
@@ -128,7 +132,7 @@ def main(argv):
 
   # default values
   threshold = 10.0
-  threshold_dt = 5.0
+  threshold_dt = 2.0
   days = 21
   ### work_path = '/nobackupp12/lpan/worker/workdir/'
   work_path = '/nobackupp12/lpan/worker/'
@@ -172,7 +176,12 @@ def main(argv):
     evict_localize_cache(work_path, userid, volume_root, float(threshold)+threshold_dt)
 
     # cleanup old files that are days old
-    cleanup(days, work_path)
+    cleanup_files(days, work_path, float(threshold)+threshold_dt, userid, volume_root)
+
+    percent_free = lustre_quota_info(userid, volume_root)
+    if percent_free > float(threshold):
+      logger.info("Cleaned up to %02.2f%% free. Exiting ..." % percent_free)
+      break
 
     time.sleep(check_interval)
 
