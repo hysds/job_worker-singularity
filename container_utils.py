@@ -329,7 +329,8 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
         raise ValueError('XXXXXX test pulling image from url XXXX')
         logger.info("Docker image %s cached in repo" % image_name)
     except:
-        logger.info("Failed to inspect docker image %s" % image_name)
+        ### logger.info("Failed to inspect docker image %s" % image_name)
+        logger.info("Docker image %s is not used on NASA Pleiades" % image_name)
 
         # pull image from url
         if image_url is not None:
@@ -396,7 +397,7 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
         ### image_info = check_output(['docker', 'inspect', image_name])
     image_info = IMAGE_INFO_
 
-    logger.info("image info for %s: %s"  % (image_name, image_info))
+    ### logger.info("image info for %s: %s"  % (image_name, image_info))
     return json.loads(image_info)[0]
 
 
