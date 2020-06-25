@@ -383,7 +383,7 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
                   logger.info("stderr: %s" % stderr)
                   if p.returncode != 0:
                       raise(RuntimeError("Failed to unzip image tar %s (%s): %s" % (image_file, image_name, stderr)))
-                  logger.info("Unzipped image tar %s (%s)" % (image_file, image_name))
+                  logger.info("unzipped image tar %s (%s)" % (image_file, image_name))
                 else:
                   logger.info("sandbox tar ball already unzipped here %s " % sandbox_dir)
 
@@ -441,7 +441,7 @@ def get_base_singularity_cmd(params):
     # build command
     ### singularity_cmd_base = [ "/nasa/singularity/3.2.0/bin/singularity", "exec", "--no-home", "--home", "/home/ops" ]
     # try the latest version 3.5
-    singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--no-home", "--home", "/home/ops" ]
+    singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--userns", "--no-home", "--home", "/home/ops" ]
 
     # add volumes
     for k, v in params['volumes']:
