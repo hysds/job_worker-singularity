@@ -1,8 +1,8 @@
 # IP address table:
 #            private            public
-#  mozart: 172.31.50.21      34.231.84.218
-#     grq: 172.31.60.171     34.238.202.245
-# metrics: 172.31.49.100     34.239.68.19
+#  mozart: 172.31.59.67      3.84.50.148
+#     grq: 172.31.54.244     52.91.25.28
+# metrics: 172.31.49.98      34.201.249.63
 #
 ### BROKER_URL = "amqp://guest:guest@172.31.50.21:5672//"
 ### CELERY_RESULT_BACKEND = "redis://:@172.31.50.21"

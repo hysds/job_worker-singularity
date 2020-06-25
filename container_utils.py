@@ -329,7 +329,8 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
         raise ValueError('XXXXXX test pulling image from url XXXX')
         logger.info("Docker image %s cached in repo" % image_name)
     except:
-        logger.info("Failed to inspect docker image %s" % image_name)
+        ### logger.info("Failed to inspect docker image %s" % image_name)
+        logger.info("Docker image %s is not used on NASA Pleiades" % image_name)
 
         # pull image from url
         if image_url is not None:
@@ -382,7 +383,7 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
                   logger.info("stderr: %s" % stderr)
                   if p.returncode != 0:
                       raise(RuntimeError("Failed to unzip image tar %s (%s): %s" % (image_file, image_name, stderr)))
-                  logger.info("Unzipped image tar %s (%s)" % (image_file, image_name))
+                  logger.info("unzipped image tar %s (%s)" % (image_file, image_name))
                 else:
                   logger.info("sandbox tar ball already unzipped here %s " % sandbox_dir)
 
@@ -396,7 +397,7 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
         ### image_info = check_output(['docker', 'inspect', image_name])
     image_info = IMAGE_INFO_
 
-    logger.info("image info for %s: %s"  % (image_name, image_info))
+    ### logger.info("image info for %s: %s"  % (image_name, image_info))
     return json.loads(image_info)[0]
 
 
@@ -440,7 +441,7 @@ def get_base_singularity_cmd(params):
     # build command
     ### singularity_cmd_base = [ "/nasa/singularity/3.2.0/bin/singularity", "exec", "--no-home", "--home", "/home/ops" ]
     # try the latest version 3.5
-    singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--no-home", "--home", "/home/ops" ]
+    singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--userns", "--no-home", "--home", "/home/ops" ]
 
     # add volumes
     for k, v in params['volumes']:
