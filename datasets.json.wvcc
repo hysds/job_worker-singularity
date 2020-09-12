@@ -536,6 +536,9 @@
 
 
 
+
+
+
  { 
    "ipath": "wvcc::data/SNDR.SNPP.CRIS",
    "match_pattern": "/(?P<id>SNDR.SNPP.CRIS.(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T.*)$",
@@ -545,24 +548,21 @@
    "type": "CRIS-data",
    "publish": {
      "s3-profile-name": "default",
-     "location": "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/datasets/CRIS/{version}/{year}/{month}/{day}/{id}",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/datasets/CRIS/{version}/{year}/{month}/{day}/{id}",
      "urls": [
-       "http://lei-wvcc-product-bucket.s3-website-us-west-2.amazonaws.com/datasets/CRIS/{version}/{year}/{month}/{day}/{id}",
-       "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/datasets/CRIS/{version}/{year}/{month}/{day}/{id}"
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/datasets/CRIS/{version}/{year}/{month}/{day}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/datasets/CRIS/{version}/{year}/{month}/{day}/{id}"
      ]
    },
    "browse": {
      "s3-profile-name": "default",
-     "location": "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/browse/CRIS/{version}/{year}/{month}/{day}/{id}",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/CRIS/{version}/{year}/{month}/{day}/{id}",
      "urls": [
-       "http://lei-wvcc-product-bucket.s3-website-us-west-2.amazonaws.com/browse/CRIS/{version}/{year}/{month}/{day}/{id}",
-       "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/browse/CRIS/{version}/{year}/{month}/{day}/{id}"
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/browse/CRIS/{version}/{year}/{month}/{day}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/CRIS/{version}/{year}/{month}/{day}/{id}"
      ]
    }
  },
-
-
-
 
  { 
    "ipath": "wvcc::data/VNP03MOD",
@@ -573,21 +573,48 @@
    "type": "VNP03MOD-data",
    "publish": {
      "s3-profile-name": "default",
-     "location": "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/datasets/VNP03MOD/{version}/{year}/{doy}/{id}",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/datasets/VNP03MOD/{version}/{year}/{doy}/{id}",
      "urls": [
-       "http://lei-wvcc-product-bucket.s3-website-us-west-2.amazonaws.com/datasets/VNP03MOD/{version}/{year}/{doy}/{id}",
-       "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/datasets/VNP03MOD/{version}/{year}/{doy}/{id}"
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/datasets/VNP03MOD/{version}/{year}/{doy}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/datasets/VNP03MOD/{version}/{year}/{doy}/{id}"
      ]
    },
    "browse": {
      "s3-profile-name": "default",
-     "location": "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/browse/VNP03MOD/{version}/{year}/{doy}/{id}",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/VNP03MOD/{version}/{year}/{doy}/{id}",
      "urls": [
-       "http://lei-wvcc-product-bucket.s3-website-us-west-2.amazonaws.com/browse/VNP03MOD/{version}/{year}/{doy}/{id}",
-       "s3://s3-us-west-2.amazonaws.com:80/lei-wvcc-product-bucket/browse/VNP03MOD/{version}/{year}/{doy}/{id}"
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/browse/VNP03MOD/{version}/{year}/{doy}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/VNP03MOD/{version}/{year}/{doy}/{id}"
      ]
    }
  },
+
+ {
+   "ipath": "wvcc::data/MATCHUP.CRIS.VIIRS",
+   "match_pattern": "/(?P<id>matchup_cris_viirs.*(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})*)$",
+   "alt_match_pattern": null,
+   "extractor": null,
+   "level": "l0",
+   "type": "MATCHUP-data",
+   "publish": {
+     "s3-profile-name": "default",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/datasets/MATCHUP/{version}/{year}/{month}/{day}/{id}",
+     "urls": [
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/datasets/MATCHUP/{version}/{year}/{month}/{day}/{id}"
+     ]
+   },
+   "browse": {
+     "s3-profile-name": "default",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/MATCHUP/{version}/{year}/{month}/{day}/{id}",
+     "urls": [
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/browse/MATCHUP/{version}/{year}/{month}/{day}/{id}"
+     ]
+   }
+ },
+
+
+
+
 
 
 
