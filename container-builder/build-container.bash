@@ -195,7 +195,7 @@ do
 
 
         # get image digest (sha256) for singularity sandbox tar ball
-        S_TAG="${TAG}_singularity"
+        S_TAG="${TAG}_singularity_V2"
         ### if [ "${TAG#*$COLON}" = "$TAG" ]; then  # does not contain ":"
         ###   S_TAG="singularity_${TAG}"
         ### else  # contains ":"
