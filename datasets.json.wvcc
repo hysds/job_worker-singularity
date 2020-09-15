@@ -614,6 +614,31 @@
 
 
 
+ {
+   "ipath": "wvcc::data/matchup-product",
+   "match_pattern": "/(?P<id>IND_CrIS_VIIRSMOD_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T.*)$",
+   "alt_match_pattern": null,
+   "extractor": null,
+   "level": "l2",
+   "type": "matchup-product",
+   "publish": {
+     "s3-profile-name": "default",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/products/matchup/{version}/{year}/{month}/{day}/{id}",
+     "urls": [
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/products/matchup/{version}/{year}/{month}/{day}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/products/matchup/{version}/{year}/{month}/{day}/{id}"
+     ]
+   },
+   "browse": {
+     "s3-profile-name": "default",
+     "location": "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/matchup/{version}/{year}/{month}/{day}/{id}",
+     "urls": [
+       "http://wvcc-matchup-data.s3-website-us-west-2.amazonaws.com/browse/matchup/{version}/{year}/{month}/{day}/{id}",
+       "s3://s3-us-west-2.amazonaws.com:80/wvcc-matchup-data/browse/hello_world/{version}/{year}/{month}/{day}/{id}"
+     ]
+   }
+ },
+
 
 
 
