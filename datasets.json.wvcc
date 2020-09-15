@@ -544,7 +544,7 @@
    "match_pattern": "/(?P<id>SNDR.SNPP.CRIS.(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T.*)$",
    "alt_match_pattern": null,
    "extractor": null,
-   "level": "l0",
+   "level": "l2",
    "type": "CRIS-data",
    "publish": {
      "s3-profile-name": "default",
@@ -569,7 +569,7 @@
    "match_pattern": "/(?P<id>VNP03MOD.*(?P<year>\\d{4})(?P<doy>\\d{3})*)$",
    "alt_match_pattern": null,
    "extractor": null,
-   "level": "l0",
+   "level": "l2",
    "type": "VNP03MOD-data",
    "publish": {
      "s3-profile-name": "default",
@@ -594,7 +594,7 @@
    "match_pattern": "/(?P<id>matchup_cris_viirs.*(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})*)$",
    "alt_match_pattern": null,
    "extractor": null,
-   "level": "l0",
+   "level": "l2",
    "type": "MATCHUP-data",
    "publish": {
      "s3-profile-name": "default",
@@ -611,7 +611,6 @@
      ]
    }
  },
-
 
 
  {
