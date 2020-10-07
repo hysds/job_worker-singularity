@@ -441,7 +441,9 @@ def get_base_singularity_cmd(params):
     # build command
     ### singularity_cmd_base = [ "/nasa/singularity/3.2.0/bin/singularity", "exec", "--no-home", "--home", "/home/ops" ]
     # try the latest version 3.5
-    singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--userns", "--no-home", "--home", "/home/ops" ]
+    ### singularity_cmd_base = [ "/nasa/singularity/3.5.3/bin/singularity", "exec", "--userns", "--no-home", "--home", "/home/ops" ]
+    # try the latest version 3.6
+    singularity_cmd_base = [ "/nasa/singularity/3.6.3/bin/singularity", "exec", "--userns", "--no-home", "--home", "/home/ops" ]
 
     # add volumes
     for k, v in params['volumes']:
@@ -451,6 +453,8 @@ def get_base_singularity_cmd(params):
     ### docker_cmd_base.extend(["-w", params['working_dir'], params['image_name']])
     ### singularity_cmd_base.extend(["--pwd", params['mount_dir'], params['sandbox_dir']])
 
+    # bind working_dir
+    singularity_cmd_base.extend(["--bind", "%s:%s" % (params['working_dir'], params['working_dir'])])
     singularity_cmd_base.extend(["--pwd", params['working_dir'], params['sandbox_dir']])
 
     return singularity_cmd_base
