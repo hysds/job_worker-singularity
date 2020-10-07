@@ -483,30 +483,32 @@
       "type": "acquisition",
       "version": "2.0"
     },
-    {
-      "ipath": "ariamh::data/S1-IW_SLC",
-      "match_pattern": "/(?P<spacecraft>S1\\w)_IW_SLC__(?P<misc>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.+)$",
-      "alt_match_pattern": null,
-      "extractor": "/home/ops/ariamh/frameMetadata/sentinel/split_swath_products.sh",
-      "level": "l1",
-      "type": "slc",
-      "publish": {
-        "s3-profile-name": "default",
-        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
-        "urls": [
-          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
-          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
-        ]
-      },
-      "browse": {
-        "s3-profile-name": "default",
-        "location": "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
-        "urls": [
-          "http://aria-dev-lts-fwd-torresal.s3-website-us-west-2.amazonaws.com/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
-          "s3://s3-us-west-2.amazonaws.com:80/aria-dev-lts-fwd-torresal/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
-        ]
-      }
-    },
+
+  {
+   "ipath": "ariamh::data/S1-IW_SLC-local",
+   "match_pattern": "/(?P<spacecraft>S1\\w)_IW_SLC__(?P<misc>.*?)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<timestamp>.+-local)$",
+   "alt_match_pattern": null,
+   "extractor": "/home/ops/ariamh/frameMetadata/sentinel/split_swath_products.sh",
+   "level": "l1",
+   "type": "slc",
+   "publish": {
+    "s3-profile-name": "default",
+    "location": "file:///nobackupp12/esi_sar/work/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+    "urls": [
+     "file:///nobackupp12/esi_sar/work/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+     "file:///nobackupp12/esi_sar/work/datasets/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
+    ]
+   },
+   "browse": {
+    "s3-profile-name": "default",
+    "location": "file:///nobackupp12/esi_sar/work/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+    "urls": [
+     "file:///nobackupp12/esi_sar/work/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}",
+     "file:///nobackupp12/esi_sar/work/browse/{type}/{version}/{year}/{month}/{day}/{spacecraft}_IW_SLC__{misc}_{year}{month}{day}{timestamp}"
+    ]
+   }
+  },
+
     {
       "ipath": "ariamh::data/S1-IW_SLC_SWATH",
       "match_pattern": "/(?P<spacecraft>s1\\w)-iw(?P<swath>\\d)-slc-(?P<misc>.*?)-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})(?P<rest>.+)$",
