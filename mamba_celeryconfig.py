@@ -112,7 +112,7 @@ WORKER_CONTIGUOUS_FAILURE_THRESHOLD = 10
 WORKER_CONTIGUOUS_FAILURE_TIME = 5.
 
 ### ROOT_WORK_DIR = "/data/work"
-ROOT_WORK_DIR = "/nobackupp12/lpan/worker/"
+ROOT_WORK_DIR = "/nobackupp12/esi_sar/worker/"
 WEBDAV_URL = None
 WEBDAV_PORT = 8085
 
