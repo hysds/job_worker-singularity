@@ -227,7 +227,8 @@ def get_singularity_params(image_name, image_url, image_mappings, root_work_dir,
     ### sandbox_basename = image_file_basename.replace('.tar.gz', '').encode('ascii', 'ignore')
     sandbox_basename = image_file_basename.replace('.tar.gz', '')
     logger.info("sandbox_basename: %s"%sandbox_basename)
-    sandbox_dir = os.path.join(root_cache_dir, sandbox_basename)
+    ### sandbox_dir = os.path.join(root_cache_dir, sandbox_basename)
+    sandbox_dir = os.environ.get('SANDBOX_DIR', '/nobackupp12/lpan/PGE/container-aria-jpl_ariamh_develop_singularity-2020-07-10-1bbb06d33ce6.simg')
     logger.info("sandbox_dir: %s"%sandbox_dir)
 
     # how to avoid this hardcoded sandbox info?
@@ -254,10 +255,13 @@ def get_singularity_params(image_name, image_url, image_mappings, root_work_dir,
     celery_cfg_file = os.environ.get('HYSDS_CELERY_CFG',
                                      os.path.join(os.path.dirname(app.conf.__file__),
                                                   "celeryconfig.py"))
+
     if celery_cfg_file not in image_mappings and "celeryconfig.py" not in image_mappings.values():
-        image_mappings[celery_cfg_file] = "celeryconfig.py"
+        ### image_mappings[celery_cfg_file] = "celeryconfig.py"
+        image_mappings[celery_cfg_file] = os.path.basename(celery_cfg_file)
+
     logger.info("XXXXXX in get_singularity_params(), celery_cfg_file: {0} XXXXX".format(celery_cfg_file))
-    logger.info("XXXXXX in get_singularity_params(), image_mappings[celery_cfg_file]: {0} XXXXX".format(image_mappings[celery_cfg_file]))
+    ### logger.info("XXXXXX in get_singularity_params(), image_mappings[celery_cfg_file]: {0} XXXXX".format(image_mappings[celery_cfg_file]))
 
     dsets_cfg_file = os.environ.get('HYSDS_DATASETS_CFG',
                                     os.path.normpath(os.path.join(os.path.dirname(sys.executable),
@@ -371,7 +375,8 @@ def ensure_image_loaded(image_name, image_url, cache_dir):
             """
 
             # if singularity, unzip the tar ball into the cache dir
-            is_singularity = True
+            ### is_singularity = True
+            is_singularity = False # do not unzip cause it is too expensive on pleiades lustre
             if is_singularity:
                 logger.info("is_singularity: True, image_file: %s" % image_file)
                 # if sandbox_dir does not already exist, untar the sandbox tarball

@@ -123,7 +123,7 @@ REDIS_UNIX_DOMAIN_SOCKET = "unix://:@/tmp/redis.sock"
 WORKER_CONTIGUOUS_FAILURE_THRESHOLD = 10
 WORKER_CONTIGUOUS_FAILURE_TIME = 5.
 
-ROOT_WORK_DIR = "/nobackupp12/lpan/work"
+ROOT_WORK_DIR = "/nobackupp12/lpan/worker/wvcc"
 WEBDAV_URL = None
 WEBDAV_PORT = 8085
 
